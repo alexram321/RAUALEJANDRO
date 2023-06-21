@@ -1,0 +1,41 @@
+<%- include layouts/header.ejs %>
+
+  <div class="container">
+    <h1>
+      <%= title %>
+    </h1>
+
+
+    <!--Leer la informacion de la Base de Datos-->
+    <div class="row">
+      <% for(var i=0; i<Guantes.length; i++){ %>
+        <%arregloID.push(i);%>
+          <div class="col-sm-4">
+            <div class="card">
+              <img height="300px" src="<%= Guantes[i].imagen%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= Guantes[i].titulo %>
+                </h5>
+                <p class="card-text">
+                  <%= Guantes[i].descripcion%>
+                </p>
+                <p class="card-text">Precio: $<%= Guantes[i].precio%>
+                </p>
+                <div class="botones">
+                  <a class="btn btn-outline-primary">Comprar</a>&nbsp;&nbsp;
+                  <a href="editar/<%= Guantes[i].ID %>" class="btn btn-outline-info">&nbsp;&nbsp;Editar&nbsp;&nbsp;</a>&nbsp;&nbsp;
+                  <form method="post" action="borrar">
+                    <input type="hidden" name="productId" value="<%= Guantes[i].ID %>">
+                    <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+    </div>
+
+  </div>
+
+  <%- include layouts/footer.ejs %>
